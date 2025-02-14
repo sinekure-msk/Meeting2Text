@@ -3,12 +3,13 @@ import ffmpeg
 from models.transcription import Transcriber
 from utils.file_utils import validate_file
 
+
 class VideoProcessor:
     def __init__(self):
         self.transcriber = Transcriber()
 
-
-    def extract_video(self, video_path, audio_path):
+    @staticmethod
+    def extract_video(video_path, audio_path):
         try:
             ffmpeg.input(video_path).output(audio_path, acodec='mp3').run()
             print(f'Audio extracted to {audio_path}')

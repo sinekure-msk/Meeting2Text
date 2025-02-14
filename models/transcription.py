@@ -1,5 +1,6 @@
 import whisper
 
+
 class Transcriber:
     def __init__(self, model_name='medium'):
         self.model = whisper.load_model(model_name)
