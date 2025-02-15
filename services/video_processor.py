@@ -6,16 +6,16 @@ from utils.progress_utils import ProgressBar
 
 
 class VideoProcessor:
-    def __init__(self):
-        self.transcriber = Transcriber()
+    def __init__(self, ffmpeg_encoding='mp3', model_name='medium'):
+        self.transcriber = Transcriber(model_name)
+        self.ffmpeg_encoding = ffmpeg_encoding
 
-    @staticmethod
-    def extract_video(video_path, audio_path):
+    def extract_video(self, video_path, audio_path):
         progress_bar = ProgressBar('FFmpeg')
         progress_bar.start()
 
         try:
-            ffmpeg.input(video_path).output(audio_path, acodec='mp3').run()
+            ffmpeg.input(video_path).output(audio_path, format=self.ffmpeg_encoding).global_args('-loglevel', 'error').run()
             progress_bar.stop()
             print(f'Audio extracted to {audio_path}')
         except Exception as e:
@@ -29,7 +29,7 @@ class VideoProcessor:
             raise FileNotFoundError(f'File {video_path} does not exist')
 
         base_name = os.path.splitext(video_path)[0]
-        audio_path = f'{base_name}_audio.mp3'
+        audio_path = f'{base_name}_audio.{self.ffmpeg_encoding}'
         output_txt_path = f'{base_name}_transcription.txt'
 
         self.extract_video(video_path, audio_path)
