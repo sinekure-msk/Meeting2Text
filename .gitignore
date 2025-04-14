@@ -1,0 +1,35 @@
+# Project folders
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.suo
+*.user
+*.tmp
+*.log
+
+# Python-specific files
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+*.egg-info/
+dist/
+build/
+*.log
+*.pot
+
+# Sys files
+.DS_Store  (Mac)
+Thumbs.db  (Windows)
+
+# Req files
+*.env
+*.env.local
+secrets.yml
+
+# Local Settings
+settings_local.py
