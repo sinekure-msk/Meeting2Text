@@ -19,7 +19,6 @@ class Transcriber:
 
             with open(output_txt_path, 'w', encoding='utf-8') as f:
                 f.write(result['text'])
-            print(f'Transcription saved to {output_txt_path}')
         except Exception as e:
             progress_bar.stop()
             print(f'Transcription failed: {e}')

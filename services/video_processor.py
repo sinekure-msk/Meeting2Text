@@ -17,7 +17,6 @@ class VideoProcessor:
         try:
             ffmpeg.input(video_path).output(audio_path, format=self.ffmpeg_encoding).global_args('-loglevel', 'error').run()
             progress_bar.stop()
-            print(f'Audio extracted to {audio_path}')
         except Exception as e:
             progress_bar.stop()
             print(f'Audio extraction failed: {e}')
